@@ -16,5 +16,17 @@ namespace YesYMao.Helpers
         PauseScreen,
         Options
     }
+    public enum ButtonType
+    {
+        Pregame,
+        MainMenu,
+        StartGame,
+        Restart,
+        Credits,
+        Pause,
+        Resume,
+        Options,
+        PregameCreds
+    }
 
 }

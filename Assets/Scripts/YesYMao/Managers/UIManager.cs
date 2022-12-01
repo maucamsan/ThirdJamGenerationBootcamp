@@ -5,23 +5,21 @@ using UnityEngine.UI;
 using YesYMao.Helpers;
 using YesYMao.UI;
 using System.Linq;
-
 namespace YesYMao.Managers
 {
-    public class UIManager : MonoBehaviour
+    public class UIManager : Singleton<UIManager>
     {
         private List<CanvasController> canvasControllerList;
         CanvasController lastActiveCanvas;
-        [SerializeField] GameObject[] tutorial = new GameObject[3];
         Animator animator;
 
-        // protected override void Awake()
-        // {
-        //     //base.Awake();
-        //     canvasControllerList = GetComponentsInChildren<CanvasController>().ToList();
-        //     canvasControllerList.ForEach(x => x.gameObject.SetActive(false));
-        //     SwitchCanvas(CanvasType.Pregame);
-        // }
+        protected override void Awake()
+        {
+            //base.Awake();
+            canvasControllerList = GetComponentsInChildren<CanvasController>().ToList();
+            canvasControllerList.ForEach(x => x.gameObject.SetActive(false));
+            SwitchCanvas(CanvasType.MainMenu);
+        }
       
     
     

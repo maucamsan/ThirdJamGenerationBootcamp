@@ -5,19 +5,47 @@ using UnityEngine;
 namespace YesYMao.Helpers
 {
 
-    public class Singleton : MonoBehaviour
+    public abstract class Singleton<T> : MonoBehaviour where T: Component
+{
+    private static T instance;
+    private static bool appIsQuitting = false;
+    public static T GetInstance()
     {
-        // Start is called before the first frame update
-        void Start()
+        if (appIsQuitting) {return null;}
+        if (instance == null)
         {
-            
+            instance = FindObjectOfType<T>();
+            if (instance == null)
+            {
+                GameObject obj = new GameObject();
+                obj.name = typeof(T).Name;
+                instance = obj.AddComponent<T>();
+            }
         }
-
-        // Update is called once per frame
-        void Update()
-        {
-            
-        }
+        return instance;
     }
+
+    protected virtual void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this as T;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (instance != this as T)
+        {
+            Destroy(gameObject);
+        }
+        else 
+            DontDestroyOnLoad(gameObject);
+
+    }
+
+    private void OnApplicationQuit()
+    {
+        appIsQuitting = true;
+    }
+}
+
 
 }
