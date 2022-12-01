@@ -14,6 +14,7 @@ namespace YesYMao.UI
 
         UIManager canvasManager;
         Button menuButton;
+        bool hasObjectToAnim = false;
 
         void Start()
         {
@@ -34,6 +35,7 @@ namespace YesYMao.UI
                     break;
                 case ButtonType.StartGame:
                     canvasManager.SwitchCanvas(CanvasType.GameUI);
+                    GameManager.GetInstance().CurrentGamestate = GameState.GamePlay;
                     break;
                 case ButtonType.Credits:
                     canvasManager.SwitchCanvas(CanvasType.Credits);

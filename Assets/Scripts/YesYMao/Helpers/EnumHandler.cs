@@ -29,4 +29,9 @@ namespace YesYMao.Helpers
         PregameCreds
     }
 
+    public enum GameState
+    {
+        Pregame, MainMenu, GamePlay, Paused, Victory, GameOver, Restart
+    }
+
 }
