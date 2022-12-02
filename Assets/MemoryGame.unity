@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -473,8 +473,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3794b7cde9629c499849455f5de534b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_GameAreaX: 5
-  m_GameAreaY: 5
+  m_GameAreaX: 4
+  m_GameAreaY: 4
   m_SpacingBetweenCards: {x: 3, y: 3}
   m_Card: {fileID: 1846606551022978233, guid: 6eb56236d76e43e438000367a7de1f50, type: 3}
   m_GameArea: {fileID: 1322297756}
