@@ -7,8 +7,20 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     private GameBoard m_GameBoard;
 
+    
+
     private bool m_CanTakeCard = true;
     private Card m_LastSelection = null;
+
+    [SerializeField] private int m_AttemptsRemaining = 10;
+
+    [Header("Particles")]
+    [SerializeField] ParticleEmitter particlesEmitter;
+
+    [Header("Sounds")]
+    [SerializeField] AudioSource m_SoundFX;
+    [SerializeField] AudioClip m_MatchedSound;
+    [SerializeField] AudioClip m_FailSound;
 
     private void Awake()
     {
@@ -62,16 +74,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void MatchedCard(Card card, Card m_LastSelection)
+    private void MatchedCard(Card card, Card lastSelection)
     {
         // print("par correcto");
         //1. Destruir cards
         Destroy(card.gameObject, 1.5f);
-        Destroy(m_LastSelection.gameObject, 1.5f);
+        Destroy(lastSelection.gameObject, 1.5f);
 
-        //2. Emitir particulas de acierto
+        //2. Emitir sonido de acierto
+        if (m_MatchedSound != null)
+        {
+            m_SoundFX.PlayOneShot(m_MatchedSound);
+        }
 
-        //3. Emitir sonido de acierto
+        //3. Emitir particulas de acierto
+        particlesEmitter.EmitParticlesOnHit(card.transform);
+        particlesEmitter.EmitParticlesOnHit(lastSelection.transform);
 
         //4. Resetear LastSelection
         m_LastSelection = null;
@@ -89,9 +107,35 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void NotMatchedCard(Card card, Card m_LastSelection)
+    private void NotMatchedCard(Card card, Card lastSelection)
     {
-       // print("par incorrecto");
+        // print("par incorrecto");
+        //1. Deshacer la selección
+        m_LastSelection = null;
+
+        //2. Disminuir intentos
+        m_AttemptsRemaining -= 1;
+
+        //3. Emitir sonido de error en emparejamiento
+        if(m_FailSound != null)
+        {
+            m_SoundFX.PlayOneShot(m_FailSound);
+        }
+        
+
+        //4. Checar si la partida finalizo porque perdió el jugador
+        if (m_AttemptsRemaining <= 0)
+        {
+            m_CanTakeCard = false;
+            //TODO Mostrar menu de GameOver
+        }
+        else
+        {
+            card.Invoke("ShowCardBack", 1.5f);
+            lastSelection.Invoke("ShowCardBack", 1.5f);
+            StartCoroutine(LockSelectionByTime(1.5f));
+        }
+
     }
 
 
