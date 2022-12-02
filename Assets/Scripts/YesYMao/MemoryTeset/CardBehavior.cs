@@ -14,7 +14,7 @@ public class CardBehavior : MonoBehaviour
         get{return id;}
     }
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         id = cardData.id;
     }

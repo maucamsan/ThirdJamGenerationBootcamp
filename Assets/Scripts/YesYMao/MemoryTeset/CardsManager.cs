@@ -5,6 +5,7 @@ using System;
 public class CardsManager : MonoBehaviour
 {
     public static Action<bool> OnHandleClick;
+    public static Action OnPairTry;
     int id1;
     int id2;
     GameObject card1;
@@ -50,18 +51,19 @@ public class CardsManager : MonoBehaviour
     {
         OnHandleClick?.Invoke(false);
         yield return new WaitForSeconds(1f);
-        // if (id1 == id2)
-        // {
-        //     card1.SetActive(false);
-        //     card2.SetActive(false);
-        //     // Call Score manager
-        // }
-        if(id1 != id2)
+        if (id1 == id2)
+        {
+            // card1.SetActive(false);
+            // card2.SetActive(false);
+            OnPairTry?.Invoke();
+        }
+        else
         {
             cardAnimator.ResetTrigger("FlipRightUI");
             cardAnimator2.ResetTrigger("FlipRightUI");
             cardAnimator.SetTrigger("FlipLeftUI");
             cardAnimator2.SetTrigger("FlipLeftUI");
+            OnPairTry?.Invoke();
         }
         OnHandleClick?.Invoke(true);
     }
