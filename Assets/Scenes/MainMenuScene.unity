@@ -296,6 +296,22 @@ PrefabInstance:
       propertyPath: cardToAnim
       value: 
       objectReference: {fileID: 1117859725}
+    - target: {fileID: 5128191552894614026, guid: 13f18737b86ea634f85e8b9624260a53, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5128191553112619963, guid: 13f18737b86ea634f85e8b9624260a53, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5128191553747203602, guid: 13f18737b86ea634f85e8b9624260a53, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5128191554057623682, guid: 13f18737b86ea634f85e8b9624260a53, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5128191554166503783, guid: 13f18737b86ea634f85e8b9624260a53, type: 3}
       propertyPath: m_Pivot.x
       value: 0

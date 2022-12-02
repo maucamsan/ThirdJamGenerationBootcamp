@@ -12,12 +12,10 @@ public class CardBehavior : MonoBehaviour
     public int Id
     {
         get{return id;}
+        set{id = value;}
     }
     // Start is called before the first frame update
-    void Awake()
-    {
-        id = cardData.id;
-    }
+   
     void OnEnable()
     {
         CardsManager.OnHandleClick += SetClickable;
@@ -33,6 +31,7 @@ public class CardBehavior : MonoBehaviour
     }
     void OnMouseDown()
     {
+        Debug.Log(Id);
         if (isClickable)
         {
             OnCardClicked?.Invoke(this);

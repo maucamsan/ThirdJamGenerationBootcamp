@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class CardSetter : MonoBehaviour
 {
-    [SerializeField] GameObject[] cards = new GameObject[16];
+    [SerializeField] List<CardBehavior> cards = new List<CardBehavior>();
+    
     List<int> cardsIdsList = new List<int>();
-    [SerializeField] List<CardData> cardsDataList = new List<CardData>();
     [SerializeField] int separation = 3;
     [SerializeField] int boardSize = 4;
     Vector3 offset = Vector3.zero;
@@ -15,12 +15,13 @@ public class CardSetter : MonoBehaviour
     void Start()
     {
         
-
+        
         List<int> idsShuffle = SetIds(cardsIdsCount);
-        int numberOfCards = cards.Length;
-        for (int i = 0; i < cardsDataList.Count; i++)
+        int numberOfCards = cards.Count;
+        for (int i = 0; i < numberOfCards; i++)
         {
-            cardsDataList[i].id = idsShuffle[i % ((numberOfCards/2) - 1)];
+            cards[i].Id = idsShuffle[i % ((numberOfCards/2))];
+            //backs[i].GetComponent<Material>().SetTexture("_Albedo", cardsDataList[i].backMaterial.GetTexture())
         }
 
 
@@ -34,7 +35,7 @@ public class CardSetter : MonoBehaviour
         int counter = 1;
         int secondCounter = 0;
         int multiplier = 1;
-        for (int i = 0; i < cards.Length; i++)
+        for (int i = 0; i < cards.Count; i++)
         {
             cards[i].transform.position =  (new Vector3( (i) % (counter),  (secondCounter %( i + 1)) * -1, 0) * separation) + offset;
             counter++;
@@ -56,6 +57,7 @@ public class CardSetter : MonoBehaviour
             cardsIdsList.Add(i);
         }
         cardsIdsList.Shuffle();
+        // cards.Shuffle();
         return cardsIdsList;
     }
 }
