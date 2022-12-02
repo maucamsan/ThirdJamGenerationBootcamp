@@ -8,7 +8,7 @@ public class GameBoard : MonoBehaviour
     [Header("Values")]
     //Game Area
     [SerializeField] int m_GameAreaX = 6;
-    [SerializeField] int m_GameAreay = 6;
+    [SerializeField] int m_GameAreaY = 6;
 
     //Separation between cards
     [SerializeField] Vector2 m_SpacingBetweenCards = Vector2.zero;
@@ -20,16 +20,56 @@ public class GameBoard : MonoBehaviour
 
     void Start()
     {
+        Vector2 initialPositionCard = CalculateInitialPositionCard();
+
+        int numberOfCards = m_GameAreaX * m_GameAreaY;
+
+        List<int> idsCards = CreateRandomList(numberOfCards);
+
+        int createdCards = 0;
+
         for(int x=0; x < m_GameAreaX; x++)
         {
-            for(int y=0; y < m_GameAreay; y++)
+            for(int y=0; y < m_GameAreaY; y++)
             {
                 GameObject cardGO = Instantiate(m_Card); //Instanciamos las cartas en cardGO
                 cardGO.transform.SetParent(m_GameArea); //Lo incluimos en el área de juego que es su padre
-                cardGO.transform.localPosition = new Vector3(x * m_SpacingBetweenCards.x, 0, y * m_SpacingBetweenCards.y);
+
+                cardGO.GetComponent<Card>().Id = idsCards[createdCards];
+
+                float posX = (x * m_SpacingBetweenCards.x) - initialPositionCard.x;
+                float posY = (y * m_SpacingBetweenCards.y) - initialPositionCard.y;
+
+                cardGO.transform.localPosition = new Vector3(posX, 0, posY);
+
+                createdCards++;
 
             }
         }
+    }
+
+
+    private Vector2 CalculateInitialPositionCard()
+    {
+        float maximumPositionX = (m_GameAreaX - 1) * m_SpacingBetweenCards.x;
+        float maximumPositionY = (m_GameAreaY - 1) * m_SpacingBetweenCards.y;
+        float halfMaxPosX = maximumPositionX / 2;
+        float halfMaxPosY = maximumPositionY / 2;
+        return new Vector2(halfMaxPosX, halfMaxPosY);
+    }
+
+    private List<int> CreateRandomList(int numberOfCards)
+    {
+        List<int> idsCards = new List<int>(); 
+
+        for (int i=0; i < numberOfCards; i++)
+        {
+            idsCards.Add(i / 2);
+        }
+
+        idsCards.Shuffle();
+
+        return idsCards;
     }
 
     // Update is called once per frame
