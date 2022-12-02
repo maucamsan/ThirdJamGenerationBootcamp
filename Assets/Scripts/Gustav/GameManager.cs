@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
+using YesYMao.Helpers;
 public class GameManager : MonoBehaviour
 {
+    public static Action OnCardsClicked;
     public static GameManager instance;
     private GameBoard m_GameBoard;
 
@@ -21,6 +23,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] AudioSource m_SoundFX;
     [SerializeField] AudioClip m_MatchedSound;
     [SerializeField] AudioClip m_FailSound;
+    private int counter = 0;
 
     private void Awake()
     {
@@ -42,7 +45,7 @@ public class GameManager : MonoBehaviour
 
         if (!m_LastSelection)
         {
-            //Si no es la última carta seleccionada, entonces esta es la primera que giramos.
+            //Si no es la ï¿½ltima carta seleccionada, entonces esta es la primera que giramos.
             FirstSelectedCard(card);
         }
         else
@@ -78,9 +81,10 @@ public class GameManager : MonoBehaviour
     {
         // print("par correcto");
         //1. Destruir cards
+        counter++;
         Destroy(card.gameObject, 1.5f);
         Destroy(lastSelection.gameObject, 1.5f);
-
+        OnCardsClicked?.Invoke();
         //2. Emitir sonido de acierto
         if (m_MatchedSound != null)
         {
@@ -94,7 +98,7 @@ public class GameManager : MonoBehaviour
         //4. Resetear LastSelection
         m_LastSelection = null;
 
-        //5. Bloquear selección por cierto tiempo
+        //5. Bloquear selecciï¿½n por cierto tiempo
         StartCoroutine(LockSelectionByTime(1.5f));
 
         //6. Descontar fichas del tablero para ganar
@@ -103,19 +107,19 @@ public class GameManager : MonoBehaviour
         //7. Comprobar victoria
         if(m_GameBoard.m_RemainingCards <= 0)
         {
-            //Ganamos el juego
+            YesYMao.Managers.UIManager.GetInstance().SwitchCanvas(CanvasType.Credits);
         }
     }
 
     private void NotMatchedCard(Card card, Card lastSelection)
     {
         // print("par incorrecto");
-        //1. Deshacer la selección
+        //1. Deshacer la selecciï¿½n
         m_LastSelection = null;
 
         //2. Disminuir intentos
         m_AttemptsRemaining -= 1;
-
+        OnCardsClicked?.Invoke();
         //3. Emitir sonido de error en emparejamiento
         if(m_FailSound != null)
         {
@@ -123,7 +127,7 @@ public class GameManager : MonoBehaviour
         }
         
 
-        //4. Checar si la partida finalizo porque perdió el jugador
+        //4. Checar si la partida finalizo porque perdiï¿½ el jugador
         if (m_AttemptsRemaining <= 0)
         {
             m_CanTakeCard = false;
