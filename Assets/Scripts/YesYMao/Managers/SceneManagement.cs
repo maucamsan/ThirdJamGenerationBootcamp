@@ -55,7 +55,7 @@ namespace YesYMao.Managers
             void OnLoadOperationComplete(AsyncOperation ao)
             {
                 //controller.CanMove = false;
-                SceneManager.SetActiveScene(SceneManager.GetSceneByName("Memory"));
+                SceneManager.SetActiveScene(SceneManager.GetSceneByName("MemoryTest"));
                 
             }
             void OnUnloadOperationComplete(AsyncOperation ao)

@@ -43,7 +43,7 @@ namespace YesYMao.Managers
                     // }
                     // Set gameplay music
                     // Allow player and game mechanics
-                    SceneManagement.GetInstance().LoadLevel("Memory");
+                    SceneManagement.GetInstance().LoadLevel("MemoryTest");
                     initialCamera.gameObject.SetActive(false);
                     break;
                 case GameState.Paused:
