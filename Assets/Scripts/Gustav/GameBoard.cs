@@ -17,6 +17,8 @@ public class GameBoard : MonoBehaviour
     [SerializeField] GameObject m_Card;
     [SerializeField] Transform m_GameArea;
 
+    public int m_RemainingCards { get; set; }
+
     [SerializeField] private Sprite[] m_Images;
 
 
@@ -50,6 +52,8 @@ public class GameBoard : MonoBehaviour
 
             }
         }
+
+        m_RemainingCards = createdCards;
     }
 
 

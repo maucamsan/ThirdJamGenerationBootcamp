@@ -42,13 +42,58 @@ public class GameManager : MonoBehaviour
 
     private void FirstSelectedCard(Card card)
     {
-
+        m_LastSelection = card;
+        card.ShowCardFront();
     }
 
     private void SecondSelectedCard(Card card)
     {
+        if (card == m_LastSelection)
+            return;
+        card.ShowCardFront();
 
+        if(card.Id == m_LastSelection.Id)
+        {
+            MatchedCard(card, m_LastSelection);
+        }
+        else
+        {
+            NotMatchedCard(card, m_LastSelection);
+        }
     }
+
+    private void MatchedCard(Card card, Card m_LastSelection)
+    {
+        // print("par correcto");
+        //1. Destruir cards
+        Destroy(card.gameObject, 1.5f);
+        Destroy(m_LastSelection.gameObject, 1.5f);
+
+        //2. Emitir particulas de acierto
+
+        //3. Emitir sonido de acierto
+
+        //4. Resetear LastSelection
+        m_LastSelection = null;
+
+        //5. Bloquear selección por cierto tiempo
+        StartCoroutine(LockSelectionByTime(1.5f));
+
+        //6. Descontar fichas del tablero para ganar
+        m_GameBoard.m_RemainingCards -= 2;
+
+        //7. Comprobar victoria
+        if(m_GameBoard.m_RemainingCards <= 0)
+        {
+            //Ganamos el juego
+        }
+    }
+
+    private void NotMatchedCard(Card card, Card m_LastSelection)
+    {
+       // print("par incorrecto");
+    }
+
 
     private void Singleton()
     {
@@ -60,5 +105,12 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    IEnumerator LockSelectionByTime(float time)
+    {
+        m_CanTakeCard = false;
+        yield return new WaitForSeconds(time);
+        m_CanTakeCard = true;
     }
 }
