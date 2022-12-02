@@ -7,8 +7,8 @@ public class GameBoard : MonoBehaviour
     
     [Header("Values")]
     //Game Area
-    [SerializeField] int m_GameAreaX = 6;
-    [SerializeField] int m_GameAreaY = 6;
+    [SerializeField] int m_GameAreaX = 5;
+    [SerializeField] int m_GameAreaY = 5;
 
     //Separation between cards
     [SerializeField] Vector2 m_SpacingBetweenCards = Vector2.zero;
@@ -17,8 +17,10 @@ public class GameBoard : MonoBehaviour
     [SerializeField] GameObject m_Card;
     [SerializeField] Transform m_GameArea;
 
+    [SerializeField] private Sprite[] m_Images;
 
-    void Start()
+
+    public void InitializeBoard()
     {
         Vector2 initialPositionCard = CalculateInitialPositionCard();
 
@@ -35,7 +37,9 @@ public class GameBoard : MonoBehaviour
                 GameObject cardGO = Instantiate(m_Card); //Instanciamos las cartas en cardGO
                 cardGO.transform.SetParent(m_GameArea); //Lo incluimos en el área de juego que es su padre
 
-                cardGO.GetComponent<Card>().Id = idsCards[createdCards];
+                Card actualCard = cardGO.GetComponent<Card>();
+                actualCard.Id = idsCards[createdCards];
+               actualCard.SetImage(m_Images[actualCard.Id]);
 
                 float posX = (x * m_SpacingBetweenCards.x) - initialPositionCard.x;
                 float posY = (y * m_SpacingBetweenCards.y) - initialPositionCard.y;

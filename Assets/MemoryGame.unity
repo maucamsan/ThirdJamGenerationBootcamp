@@ -286,11 +286,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3794b7cde9629c499849455f5de534b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_GameAreaX: 6
-  m_GameAreaY: 6
+  m_GameAreaX: 5
+  m_GameAreaY: 5
   m_SpacingBetweenCards: {x: 3, y: 3}
   m_Card: {fileID: 1846606551022978233, guid: 6eb56236d76e43e438000367a7de1f50, type: 3}
   m_GameArea: {fileID: 1322297756}
+  m_Images:
+  - {fileID: -793815203, guid: d6fcae41d46b3154192e21f89c9538fe, type: 3}
+  - {fileID: 124210349, guid: d6fcae41d46b3154192e21f89c9538fe, type: 3}
+  - {fileID: -934662709, guid: d6fcae41d46b3154192e21f89c9538fe, type: 3}
+  - {fileID: -572705551, guid: d6fcae41d46b3154192e21f89c9538fe, type: 3}
+  - {fileID: 486796108, guid: d6fcae41d46b3154192e21f89c9538fe, type: 3}
+  - {fileID: 554378885, guid: d6fcae41d46b3154192e21f89c9538fe, type: 3}
+  - {fileID: 63448873, guid: d6fcae41d46b3154192e21f89c9538fe, type: 3}
+  - {fileID: -882859600, guid: d6fcae41d46b3154192e21f89c9538fe, type: 3}
+  - {fileID: -1405631145, guid: d6fcae41d46b3154192e21f89c9538fe, type: 3}
+  - {fileID: -1744307560, guid: d6fcae41d46b3154192e21f89c9538fe, type: 3}
+  - {fileID: 1198550887, guid: d6fcae41d46b3154192e21f89c9538fe, type: 3}
+  - {fileID: 180681726, guid: d6fcae41d46b3154192e21f89c9538fe, type: 3}
+  - {fileID: 1943142820, guid: d6fcae41d46b3154192e21f89c9538fe, type: 3}
+  - {fileID: -1395571433, guid: d6fcae41d46b3154192e21f89c9538fe, type: 3}
+  - {fileID: 1488847367, guid: d6fcae41d46b3154192e21f89c9538fe, type: 3}
+  - {fileID: -443462587, guid: d6fcae41d46b3154192e21f89c9538fe, type: 3}
 --- !u!114 &1635732956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -546,7 +563,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2052090376}
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 5.06, y: 16.23, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
