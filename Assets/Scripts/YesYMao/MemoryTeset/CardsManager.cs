@@ -49,14 +49,14 @@ public class CardsManager : MonoBehaviour
     IEnumerator WaitForAnimation()
     {
         OnHandleClick?.Invoke(false);
-        yield return new WaitForSeconds(cardAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime + 0.36f);
-        if (id1 == id2)
-        {
-            card1.SetActive(false);
-            card2.SetActive(false);
-            // Call Score manager
-        }
-        else
+        yield return new WaitForSeconds(1f);
+        // if (id1 == id2)
+        // {
+        //     card1.SetActive(false);
+        //     card2.SetActive(false);
+        //     // Call Score manager
+        // }
+        if(id1 != id2)
         {
             cardAnimator.ResetTrigger("FlipRightUI");
             cardAnimator2.ResetTrigger("FlipRightUI");

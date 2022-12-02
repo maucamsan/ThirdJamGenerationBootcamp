@@ -8,7 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenuScene.unity
     guid: f664a2e5333a1514887272e0275be332
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Memory.unity
     guid: 98a73698f326ab24eb4033c602bd622f
+  - enabled: 1
+    path: Assets/Scenes/MemoryTest.unity
+    guid: 70ba75abf02cbe440960a66f12c6e0a0
   m_configObjects: {}

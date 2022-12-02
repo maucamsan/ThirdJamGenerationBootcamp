@@ -8,6 +8,7 @@ public class CardBehavior : MonoBehaviour
     [SerializeField] CardData cardData;
     private int id;
     bool isClickable = true;
+    
     public int Id
     {
         get{return id;}
@@ -33,7 +34,10 @@ public class CardBehavior : MonoBehaviour
     void OnMouseDown()
     {
         if (isClickable)
+        {
             OnCardClicked?.Invoke(this);
+            isClickable = false;
+        }
     }
 
 }
